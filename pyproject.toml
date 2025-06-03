@@ -7,10 +7,26 @@ requires-python = ">=3.13"
 dependencies = [
     "fastapi[standard]>=0.115.12",
     "pre-commit>=4.2.0",
+    "pydantic>=2.11.5",
     "ruff>=0.11.12",
 ]
 
 [tool.ruff]
 line-length = 88
 target-version = "py313"
+
+[tool.pyright]
+typeCheckingMode = "strict"
+pythonVersion = "3.13"
+include = [
+    "app/**/*.py",
+]
+exclude = [
+    "app/tests/**/*.py",
+    "app/routers/__init__.py",
+    "app/schemas/__init__.py",
+    ".venv/**/*.py",
+]
+venvPath = "."
+venv = ".venv"
 
