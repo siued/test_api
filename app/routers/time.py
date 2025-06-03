@@ -1,20 +1,54 @@
+from zoneinfo import ZoneInfo
 from fastapi import APIRouter
 from datetime import datetime
 
 from app.schemas.time import TimeResponse, TimeSeparatedResponse
+from fastapi import Query
+from fastapi import HTTPException
 
 router = APIRouter()
 
 
-@router.get("", response_model=TimeResponse)
-def get_current_time() -> TimeResponse:
+def is_valid_timezone(timezone: str) -> bool:
+    try:
+        ZoneInfo(timezone)
+        return True
+    except Exception:
+        return False
+
+
+@router.get(
+    "",
+    response_model=TimeResponse,
+    responses={
+        400: {
+            "description": "Invalid timezone",
+            "content": {
+                "application/json": {
+                    "example": {"detail": "Invalid timezone: Europe/Invalid"}
+                }
+            },
+        },
+    },
+)
+def get_current_time(
+    timezone: str = Query(
+        "UTC",
+        description="Timezone in IANA format (e.g., 'UTC', 'Europe/London', 'America/New_York').",
+        examples=["UTC", "Europe/London", "America/New_York"],
+    ),
+) -> TimeResponse:
     """
     Get the current time in various formats.
     Returns:
         CurrentTimeResponse: A response containing the current time in ISO format,
         epoch timestamp, and separated components (year, month, day, hour, minute, second).
+    Raises:
+        HTTPException: If the provided timezone is invalid.
     """
-    current_time = datetime.now()
+    if not is_valid_timezone(timezone):
+        raise HTTPException(status_code=400, detail=f"Invalid timezone: {timezone}")
+    current_time = datetime.now(ZoneInfo(timezone))
     return TimeResponse(
         current_time_ISO=current_time.isoformat(),
         current_time_epoch=int(current_time.timestamp()),
