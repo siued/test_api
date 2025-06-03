@@ -533,6 +533,8 @@ dependencies = [
     { name = "pydantic" },
     { name = "pytest" },
     { name = "ruff" },
+    { name = "uvicorn", extra = ["standard"] },
+    { name = "watchfiles" },
 ]
 
 [package.metadata]
@@ -542,6 +544,8 @@ requires-dist = [
     { name = "pydantic", specifier = ">=2.11.5" },
     { name = "pytest", specifier = ">=8.4.0" },
     { name = "ruff", specifier = ">=0.11.12" },
+    { name = "uvicorn", extras = ["standard"], specifier = ">=0.34.3" },
+    { name = "watchfiles", specifier = ">=1.0.5" },
 ]
 
 [[package]]

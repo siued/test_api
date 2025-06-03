@@ -40,11 +40,6 @@ def get_current_time(
 ) -> TimeResponse:
     """
     Get the current time in various formats.
-    Returns:
-        CurrentTimeResponse: A response containing the current time in ISO format,
-        epoch timestamp, and separated components (year, month, day, hour, minute, second).
-    Raises:
-        HTTPException: If the provided timezone is invalid.
     """
     if not is_valid_timezone(timezone):
         raise HTTPException(status_code=400, detail=f"Invalid timezone: {timezone}")
