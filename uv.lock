@@ -559,15 +559,15 @@ wheels = [
 
 [[package]]
 name = "sentry-sdk"
-version = "2.29.1"
+version = "0.10.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "certifi" },
     { name = "urllib3" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/22/67/d552a5f8e5a6a56b2feea6529e2d8ccd54349084c84176d5a1f7295044bc/sentry_sdk-2.29.1.tar.gz", hash = "sha256:8d4a0206b95fa5fe85e5e7517ed662e3888374bdc342c00e435e10e6d831aa6d", size = 325518, upload-time = "2025-05-19T14:27:38.512Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/29/44/3c17a4a90216eb6983782f86ff3afb981f4f6ce022e94572a47cb2c0e968/sentry-sdk-0.10.2.tar.gz", hash = "sha256:d491aa6399eaa3eded433972751a9770180730fd8b4c225b0b7f49c4fa2af70b", size = 54629, upload-time = "2019-07-15T17:52:53.654Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f0/e5/da07b0bd832cefd52d16f2b9bbbe31624d57552602c06631686b93ccb1bd/sentry_sdk-2.29.1-py2.py3-none-any.whl", hash = "sha256:90862fe0616ded4572da6c9dadb363121a1ae49a49e21c418f0634e9d10b4c19", size = 341553, upload-time = "2025-05-19T14:27:36.882Z" },
+    { url = "https://files.pythonhosted.org/packages/95/38/7f691570ed9e85479dbe4e0959ae223d364693708ba6d293d850b657f1a0/sentry_sdk-0.10.2-py2.py3-none-any.whl", hash = "sha256:d68003cdffbbfcadaa2c445b72e1050b0a44406f94199866f192986c016b23f5", size = 78238, upload-time = "2019-07-15T17:52:53.794Z" },
 ]
 
 [[package]]
@@ -647,7 +647,7 @@ requires-dist = [
     { name = "pydantic-settings", specifier = ">=2.9.1" },
     { name = "pytest", specifier = ">=8.4.0" },
     { name = "ruff", specifier = ">=0.11.12" },
-    { name = "sentry-sdk", specifier = ">=2.29.1" },
+    { name = "sentry-sdk", specifier = "==0.10.2" },
     { name = "uvicorn", extras = ["standard"], specifier = ">=0.34.3" },
     { name = "watchfiles", specifier = ">=1.0.5" },
 ]

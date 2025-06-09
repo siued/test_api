@@ -42,7 +42,6 @@ async def get_current_time(
     """
     Get the current time in various formats.
     """
-
     if random.random() < 0.5:
         service.throw_random_exception()
 

@@ -10,6 +10,52 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./postgres/init.sql:/docker-entrypoint-initdb.d/init-db.sql
+
+  redis:
+    image: redis
+
+  sentry:
+    image: sentry
+    depends_on:
+     - redis
+     - postgres
+    ports:
+     - 9000:9000
+    environment:
+      SENTRY_SECRET_KEY: 'abcd1234abcd1234abcd1234abcd1234'
+      SENTRY_POSTGRES_HOST: postgres
+      SENTRY_DB_USER: ${POSTGRES_USER}
+      SENTRY_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      SENTRY_DB_NAME: sentry
+      SENTRY_REDIS_HOST: redis
+
+  sentry-cron:
+    image: sentry
+    depends_on:
+     - redis
+     - postgres
+    command: "sentry run cron"
+    environment:
+      SENTRY_SECRET_KEY: 'abcd1234abcd1234abcd1234abcd1234'
+      SENTRY_POSTGRES_HOST: postgres
+      SENTRY_DB_USER: ${POSTGRES_USER}
+      SENTRY_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      SENTRY_DB_NAME: sentry
+      SENTRY_REDIS_HOST: redis
+
+  sentry-worker:
+    image: sentry
+    depends_on:
+     - redis
+     - postgres
+    command: "sentry run worker"
+    environment:
+      SENTRY_SECRET_KEY: 'abcd1234abcd1234abcd1234abcd1234'
+      SENTRY_POSTGRES_HOST: postgres
+      SENTRY_DB_USER: ${POSTGRES_USER}
+      SENTRY_DB_PASSWORD: ${POSTGRES_PASSWORD}
+      SENTRY_DB_NAME: sentry
+      SENTRY_REDIS_HOST: redis
   
   
 volumes:
