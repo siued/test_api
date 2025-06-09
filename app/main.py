@@ -30,5 +30,9 @@ app.include_router(time.router, prefix="/time", tags=["time"])
 
 @app.exception_handler(HTTPException)
 async def http_exception_handler(request: Request, exc: HTTPException):
+    """
+    We need to explicitly send these to Sentry, because we are using an old version of the SDK
+    due to self-hosting compatibility issues.
+    """
     sentry.capture_exception(exc)
     return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
