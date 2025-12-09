@@ -1,3 +1,9 @@
+# test_api
+
+## Overview
+
+This is a small dummy Python API. I mainly use it as a learning platform to explore modern Python tooling like `uv`, dev containers in Docker, self-hosted Sentry, etc. 
+
 ## Local development
 This project is set up for local development with Docker. You can run the application in a containerized dev environment.
 
